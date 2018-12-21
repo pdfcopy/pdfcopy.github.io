@@ -1,0 +1,165 @@
+  .tab-input {
+      display: none;
+  }
+
+  .tab-input:checked+.tab-label {
+      color: #666;
+      background: #fdfdfd;
+      border-top: 1px solid #81D4FA;
+  }
+
+  .tab-label {
+      display: inline-block;
+      margin: 0 0 -1px;
+      padding: 5px 15px;
+      font-weight: 500;
+      font-size: 16px;
+      text-align: center;
+      color: #aaa;
+      border: 1px solid transparent;
+  }
+
+  .tab-label:before {
+      font-family: fontawesome;
+      font-weight: normal;
+      margin-right: 10px;
+  }
+
+  .tab-label:hover {
+      color: #777;
+      cursor: pointer;
+  }
+
+  .cbx-container {
+      display: block;
+      position: relative;
+      right: 0;
+      padding-left: 25px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #666;
+      font-weight: 350;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+  }
+
+  /* Hide the browser's default checkbox */
+
+  .cbx-container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+  }
+
+  /* Create a custom checkbox */
+
+  .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 23px;
+      width: 23px;
+      background-color: #E1F5FE;
+  }
+
+  /* On mouse-over, add a grey background color */
+
+  .cbx-container:hover input~.checkmark {
+      background-color: #B3E5FC;
+  }
+
+  /* When the checkbox is checked, add a blue background */
+
+  .cbx-container input:checked~.checkmark {
+      background-color: #B3E5FC;
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+
+  .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+  }
+
+  /* Show the checkmark when checked */
+
+  .cbx-container input:checked~.checkmark:after {
+      display: block;
+  }
+
+  /* Style the checkmark/indicator */
+
+  .cbx-container .checkmark:after {
+      left: 9px;
+      top: 5px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+  }
+
+  .tool {
+      position: absolute;
+      bottom: 0;
+  }
+
+  .btn {
+      opacity: 0.6;
+      transition: 0.3s;
+      cursor: pointer;
+  }
+
+  .btn:hover {
+      opacity: 1;
+  }
+
+  .btn-clear-wrap {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+  }
+
+  .btn-clear {
+      width: 16px;
+      height: 16px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTVweCIgaGVpZ2h0PSIxNXB4IiB2aWV3Qm94PSIwIDAgMTUgMTUiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQ2LjIgKDQ0NDk2KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5Db21iaW5lZCBTaGFwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSItIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iNC4xLWNvcHktMzIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02MjAuMDAwMDAwLCAtNTQxLjAwMDAwMCkiIGZpbGwtcnVsZT0ibm9uemVybyIgZmlsbD0iIzgwODA4MCI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik02MjYuNzkyODkzLDU0OC41IEw2MjAuMjkyODkzLDU1NSBMNjIxLDU1NS43MDcxMDcgTDYyNy41LDU0OS4yMDcxMDcgTDYzNCw1NTUuNzA3MTA3IEw2MzQuNzA3MTA3LDU1NSBMNjI4LjIwNzEwNyw1NDguNSBMNjM0LjcwNzEwNyw1NDIgTDYzNCw1NDEuMjkyODkzIEw2MjcuNSw1NDcuNzkyODkzIEw2MjEsNTQxLjI5Mjg5MyBMNjIwLjI5Mjg5Myw1NDIgTDYyNi43OTI4OTMsNTQ4LjUgWiIgaWQ9IkNvbWJpbmVkLVNoYXBlIj48L3BhdGg+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=);
+  }
+
+  .btn-copy-wrap {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+  }
+
+  .btn-copy {
+      position: absolute;
+      right: 0px;
+      width: 22px;
+      height: 22px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjVweCIgaGVpZ2h0PSIyNXB4IiB2aWV3Qm94PSIwIDAgMjUgMjUiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQ2LjIgKDQ0NDk2KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT40LjEgY29weSAzNzwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSItIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iNC4xLWNvcHktMzIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03NzguMDAwMDAwLCAtNTM4LjAwMDAwMCkiIGZpbGw9IiMwMDAwMDAiPgogICAgICAgICAgICA8ZyBpZD0i5aSN5Yi2IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3ODIuMDAwMDAwLCA1NDAuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTUuNTY2MzMwNyw2IEwxMSwxLjQzMzY2OTI4IEwxMSw2IEwxNS41NjYzMzA3LDYgWiBNMTYsNi43MTY4MzQ2NCBMMTYsNyBMMTAuNSw3IEwxMCw3IEwxMCwxIEwxMC4yODMxNjU0LDEgTDMsMSBMMywwIEwxMSwwIEwxMSwwLjAxOTQ1NTcxODggTDE2Ljk4MDU0NDMsNiBMMTcsNiBMMTcsMTYgTDE2LDE2IEwxNiw2LjcxNjgzNDY0IFogTTAuNSwzIEwyLDMgTDIsNCBMMSw0IEwxLDE5IEwwLDE5IEwwLDMgTDAuNSwzIFogTTEzLDE4IEwxNCwxOCBMMTQsMjAgTDEzLDIwIEwxMywxOCBaIE0wLDE5IEwxMywxOSBMMTMsMjAgTDAsMjAgTDAsMTkgWiBNMywxIEw0LDEgTDQsMTcgTDMsMTcgTDMsMSBaIE00LDE2IEwxNywxNiBMMTcsMTcgTDQsMTcgTDQsMTYgWiIgaWQ9IkNvbWJpbmVkLVNoYXBlIj48L3BhdGg+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==)
+  }
+
+  .copy-text {
+      display: block;
+      opacity: 0;
+      transition: 0s;
+      background: #999;
+      font-size: 10px;
+      color:#fff;
+      font-weight: 500;
+      padding: 3px;
+      margin-top: 3px;
+  }

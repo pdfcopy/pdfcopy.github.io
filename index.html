@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>remove line breaks</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="ui.css">
+    <link rel="icon" href="pdfcopy_favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="pdfcopy_favicon.ico" type="image/x-icon">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="top"></div>
+
+    <div id="mid">
+
+        <div id="left-container">
+            <div id="input-container">
+
+                <div class="toolbar">
+                    <div class="tool">
+                        <input class="tab-input" id="tabCh" type="radio" name="tabs" checked>
+                        <label class="tab-label" for="tabCh" onclick="setMode(modeCh); checkChinese();">中文模式</label>
+
+                        <input class="tab-input" id="tabEn" type="radio" name="tabs">
+                        <label class="tab-label" for="tabEn" onclick="setMode(modeEn); checkEnglish();">英文模式</label>
+                    </div>
+                </div>
+                <div class="tx-area-wrap">
+                    <textarea class="tx-area" id="text-input" placeholder=""></textarea>
+                    <div class="btn-clear-wrap">
+                        <div class="btn btn-clear" onclick="clearText()"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="right-container">
+            <div id="output-container">
+
+                <div class="toolbar">
+                    <label class="cbx-container tool">自动复制
+                        <input id="autoCopy" type="checkbox" onclick="setAutoCopy()">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <div class="tx-area-wrap">
+                    <textarea class="tx-area" id="text-output"></textarea>
+                    <div class="btn-copy-wrap">
+                        <div style="height:22px">
+                            <div class="btn btn-copy" onclick="copyOutput()"></div>
+                        </div>
+                        <div class="copy-text">
+                            <span>已复制</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="bottom"></div>
+
+    <script type="text/javascript">
+
+        var textInput = null;
+        var textOutput = null;
+        var modeCh = 'ch';
+        var modeEn = 'en';
+
+        window.onload = init;
+
+        init();
+
+        function init() {
+            textInput = document.getElementById('text-input');
+            textOutput = document.getElementById('text-output');
+
+            switch (getMode()) {
+                case modeCh:
+                    document.getElementById('tabCh').checked = true;
+                    checkChinese();
+                    break;
+                case modeEn:
+                    document.getElementById('tabEn').checked = true;
+                    checkEnglish();
+                    break;
+            }
+            document.getElementById('autoCopy').checked = isAutoCopy();
+
+            textInput.oninput = exec;
+        }
+
+        function checkChinese() {
+            textInput.placeholder = '去除换行符，去除空格，规范全角半角';
+            exec();
+        }
+        function checkEnglish() {
+            textInput.placeholder = '去除换行符，规范空格，规范全角半角';
+            exec();
+        }
+
+        function exec() {
+            textInput.focus();
+            if (getMode() === modeCh) {
+                textOutput.value = execCh(textInput.value);
+            } else {
+                textOutput.value = execEn(textInput.value);
+            }
+            if (isAutoCopy()) {
+                copyOutput();
+            }
+        }
+
+        var regexWhiteSpace = /\s/g;
+        var regexMultiSpace = /\s+/g;
+
+        function execCh(str) {
+            str = dbc2sbc(str);
+            str = str.replace(regexWhiteSpace, '');
+            return str;
+        }
+
+        function execEn(str) {
+            str = dbc2sbc(str);
+            str = str.replace(regexMultiSpace, ' ');
+            return str;
+        }
+
+        function dbc2sbc(str) {
+            let result = '';
+            for (let i = 0; i < str.length; i++) {
+                let charCode = str.charCodeAt(i);
+                if ((charCode >= 65296 && charCode <= 65305) || //0~9
+                    (charCode >= 65313 && charCode <= 65338) || //A~Z
+                    (charCode >= 65345 && charCode <= 65370)) { //a~z
+                    result += String.fromCharCode(charCode - 65248)
+                } else if (charCode == 12288) { //space
+                    result += String.fromCharCode(32);
+                } else {
+                    result += str[i];
+                }
+            }
+            return result;
+        }
+
+        function clearText() {
+            textInput.value = '';
+            textOutput.value = '';
+            textInput.focus();
+        }
+
+        function copyOutput() {
+            if (textOutput.value === '') {
+                return;
+            }
+
+            textOutput.select();
+            document.execCommand('copy');
+            textInput.focus();
+
+            let copyText = document.getElementsByClassName('copy-text')[0];
+            copyText.style.transition = '0s';
+            copyText.style.opacity = 1;
+            setTimeout(() => { copyText.style.transition = '1s'; copyText.style.opacity = 0; }, 2000);
+        }
+
+        function getMode() {
+            if (localStorage.mode) {
+                return localStorage.mode;
+            } else {
+                return modeCh;
+            }
+        }
+
+        function setMode(v) {
+            localStorage.mode = v;
+        }
+
+        function isAutoCopy() {
+            if (localStorage.autocopy) {
+                return localStorage.autocopy === 'true';
+            } else {
+                return false;
+            }
+        }
+
+        function setAutoCopy() {
+            localStorage.autocopy = document.getElementById('autoCopy').checked;
+        }
+    </script>
+
+</body>
+
+</html>
