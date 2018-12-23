@@ -69,7 +69,7 @@ html, body {
 }
 
 textarea:focus {
-    outline-width: 0;
+    outline: none;
 }
 
 .toolbar {
