@@ -4,18 +4,18 @@
 
   .tab-input:checked+.tab-label {
       color: #666;
-      background: #fdfdfd;
-      border-top: 1px solid #81D4FA;
+      background: #fff;
+      border-top: 2px solid #64B5F6;
   }
 
   .tab-label {
       display: inline-block;
       margin: 0;
       padding: 5px 1vw;
-      font-weight: 500;
+      font-weight: 400;
       font-size: 16px;
       text-align: center;
-      color: #aaa;
+      color: #eee;
       border: 1px solid transparent;
   }
 
@@ -26,7 +26,7 @@
   }
 
   .tab-label:hover {
-      color: #777;
+      color: #fff;
       cursor: pointer;
   }
 
@@ -38,7 +38,7 @@
       margin-bottom: 5px;
       cursor: pointer;
       font-size: 16px;
-      color: #666;
+      color: #fff;
       font-weight: 350;
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -64,19 +64,21 @@
       left: 0;
       height: 23px;
       width: 23px;
-      background-color: #E1F5FE;
+      opacity: 0.9;
+      background-color: #fff;
   }
 
   /* On mouse-over, add a grey background color */
 
   .cbx-container:hover input~.checkmark {
-      background-color: #B3E5FC;
+      opacity: 1;
+      background-color: #fff;
   }
 
   /* When the checkbox is checked, add a blue background */
 
   .cbx-container input:checked~.checkmark {
-      background-color: #B3E5FC;
+      background-color: #fff;
   }
 
   /* Create the checkmark/indicator (hidden when not checked) */
@@ -100,7 +102,7 @@
       top: 5px;
       width: 5px;
       height: 10px;
-      border: solid white;
+      border: solid #64B5F6;
       border-width: 0 3px 3px 0;
       -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
