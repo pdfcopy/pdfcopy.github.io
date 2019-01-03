@@ -59,7 +59,10 @@ body {
 
 #text-input {}
 
-#text-output {}
+#text-output {
+    background: #f5f5f5;
+    cursor: default;
+}
 
 .tx-area-wrap {
     width: 100%;
